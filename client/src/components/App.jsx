@@ -5,17 +5,15 @@ import Login from './Login';
 import AllProjects from './AllProjects';
 import ChatPage from './Chat/ChatPage';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { LinkContainer } from 'react-router-bootstrap';
+
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { ApplicationContext, defaultState } from '../hooks/useApplicationData';
 import { useReducer, useState } from 'react';
 import dataReducer from '../reducer/data_reducer';
 import TaskList from './TaskList';
+import NavBar from './NavBar';
 import { redirect } from 'react-router-dom';
-import Tooltip from '@mui/material/Tooltip';
+
 import AboutUsPage from './AboutUsPage';
 
 const App = () => {
@@ -37,48 +35,12 @@ const App = () => {
       element: (
         <>
           <header className="header">
-            <Navbar variant="dark">
-              <Container className="nav-bar">
-                <LinkContainer to="/">
-                  <Navbar.Brand>
-                    <img
-                      className="logo"
-                      src="/images/doable_logo_new.png"
-                      alt="logo"
-                    />
-                    <span className="nav-bar__doable">DOABLE</span>
-                  </Navbar.Brand>
-                </LinkContainer>
-                {user ? (
-                  <Nav>
-                    <i className="fa fa-search"></i>
-                    <i className="fa-regular fa-bell"></i>
-                    <Tooltip title={`This is me! A ${userName}!`} arrow>
-                      <img src={userAvatar} alt={userName} className="avatar" />
-                    </Tooltip>
-                    <NavDropdown
-                      align="end"
-                      title={userName}
-                      id="basic-nav-dropdown"
-                    >
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
-                      <LinkContainer to="/projects">
-                        <NavDropdown.Item>Project History</NavDropdown.Item>
-                      </LinkContainer>
-                      <NavDropdown.Item>Settings</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <LinkContainer to="/">
-                        <NavDropdown.Item onClick={handleLogout}>
-                          Log Out
-                        </NavDropdown.Item>
-                      </LinkContainer>
-                    </NavDropdown>
-                  </Nav>
-                ) : (
-                  ''
-                )}
-              </Container>
-            </Navbar>
+            <NavBar
+              user={user}
+              userName={userName}
+              avatar={userAvatar}
+              logout={handleLogout}
+            />
           </header>
           <Outlet />
         </>
