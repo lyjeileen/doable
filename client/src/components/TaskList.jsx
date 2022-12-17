@@ -5,10 +5,7 @@ import TaskTabs from './TaskTabs';
 import { useParams } from 'react-router-dom';
 import { getTasksForProject } from '../api/task';
 import TaskListItem from './TaskListItem';
-import {
-  useApplicationState,
-  useApplicationDispatch,
-} from '../hooks/useApplicationData';
+import { useApplicationDispatch } from '../hooks/useApplicationData';
 import { SET_TASKS, OPEN_ADD_TASK } from '../reducer/data_reducer';
 import TaskBoard from './TaskBoard';
 
