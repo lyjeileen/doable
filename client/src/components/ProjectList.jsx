@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import ProjectForm from './ProjectForm';
 import Button from 'react-bootstrap/Button';
 import './ProjectList.css';
@@ -10,11 +12,19 @@ import ProjectListItem from './ProjectListItem';
 import Footer from './Footer';
 
 export default function ProjectList(props) {
+  const [keyword, setKeyword] = useState('');
   const { projects, title } = props;
   const { projectToAdd } = useApplicationState();
   const dispatch = useApplicationDispatch();
 
-  const projectList = projects.map((project) => {
+  let filteredProjects = [...projects];
+  if (keyword.length !== 0) {
+    filteredProjects = projects.filter((item) =>
+      item.name.toLowerCase().includes(keyword.toLowerCase())
+    );
+  }
+
+  const projectList = filteredProjects.map((project) => {
     // converting date to readable date string
     const startDateString = new Date(project.start_date).toDateString();
     const endDateString = new Date(project.expected_end_date).toDateString();
@@ -33,6 +43,7 @@ export default function ProjectList(props) {
       />
     );
   });
+
   return (
     <>
       <div className="project-list">
@@ -40,6 +51,13 @@ export default function ProjectList(props) {
         <div className="projects__header">
           <h1 className="d-inline">{title}</h1>
         </div>
+
+        <input
+          type="text"
+          placeholder="Search Project Name"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+        ></input>
 
         <table className="table table-hover projects__table">
           <thead>

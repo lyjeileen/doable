@@ -47,3 +47,16 @@
   display: flex;
   flex-shrink: 0;
 }
+
+input {
+  border: 2px solid #00987ab8;
+  margin: 20px 0px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+input:focus {
+  border: 3px solid #00987ab8;
+  box-shadow: 0 0 3px #00987ab8;
+  outline: none;
+}
