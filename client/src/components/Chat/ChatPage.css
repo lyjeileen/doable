@@ -44,14 +44,14 @@
   /* align-items: center; */
 }
 .chat__sidebar {
-  /* height: 100%; */
   background-color: rgb(234, 232, 232);
   flex: 0.2;
   padding: 20px;
   border-right: 1px solid #fdfdfd;
 }
 .chat__main {
-  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
   flex: 0.8;
 }
 .chat__header {
@@ -74,7 +74,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-
   background-color: rgb(234, 232, 232);
 }
 .leaveChat__btn {
@@ -89,10 +88,11 @@
 }
 .message__container {
   width: 100%;
-  height: 80vh;
   background-color: #fff;
   padding: 20px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  flex: auto;
+  flex-basis: 0;
 }
 
 .message__container > * {
@@ -100,9 +100,9 @@
 }
 .chat__footer {
   padding: 10px;
-  /* background-color: #f9f5eb; */
   background-color: rgb(234, 232, 232);
   height: 10vh;
+  width: 100%;
 }
 .form {
   width: 100%;
